@@ -1,0 +1,171 @@
+{
+	"building": "Gedung A",
+	"summary": {
+		"energyTodayKwh": 1250,
+		"avgTemperature": 24.5,
+		"avgCO2": 650,
+		"airQuality": "Baik"
+	},
+	"rooms": [
+		{
+			"id": 1,
+			"name": "Ruang Meeting 1.1",
+			"floor": 1,
+			"temperature": 24.0,
+			"co2": 700,
+			"humidity": 65,
+			"status": "Normal"
+		},
+		{
+			"id": 2,
+			"name": "Ruang Kerja 1.2",
+			"floor": 1,
+			"temperature": 23.5,
+			"co2": 620,
+			"humidity": 62,
+			"status": "Normal"
+		},
+		{
+			"id": 3,
+			"name": "Ruang Server 1.3",
+			"floor": 1,
+			"temperature": 20.0,
+			"co2": 500,
+			"humidity": 55,
+			"status": "Normal"
+		},
+		{
+			"id": 4,
+			"name": "Ruang Meeting 2.1",
+			"floor": 2,
+			"temperature": 26.5,
+			"co2": 900,
+			"humidity": 70,
+			"status": "Warning"
+		},
+		{
+			"id": 5,
+			"name": "Ruang Kerja 2.2",
+			"floor": 2,
+			"temperature": 25.0,
+			"co2": 750,
+			"humidity": 68,
+			"status": "Normal"
+		},
+		{
+			"id": 6,
+			"name": "Ruang Direksi 2.3",
+			"floor": 2,
+			"temperature": 24.2,
+			"co2": 680,
+			"humidity": 63,
+			"status": "Normal"
+		},
+		{
+			"id": 7,
+			"name": "Auditorium 3.1",
+			"floor": 3,
+			"temperature": 27.8,
+			"co2": 1200,
+			"humidity": 75,
+			"status": "Alert"
+		},
+		{
+			"id": 8,
+			"name": "Ruang Training 3.2",
+			"floor": 3,
+			"temperature": 26.0,
+			"co2": 850,
+			"humidity": 69,
+			"status": "Warning"
+		},
+		{
+			"id": 9,
+			"name": "Ruang Istirahat 3.3",
+			"floor": 3,
+			"temperature": 25.5,
+			"co2": 720,
+			"humidity": 66,
+			"status": "Normal"
+		},
+		{
+			"id": 10,
+			"name": "Ruang IT 4.1",
+			"floor": 4,
+			"temperature": 21.0,
+			"co2": 550,
+			"humidity": 58,
+			"status": "Normal"
+		},
+		{
+			"id": 11,
+			"name": "Ruang R&D 4.2",
+			"floor": 4,
+			"temperature": 23.8,
+			"co2": 640,
+			"humidity": 61,
+			"status": "Normal"
+		},
+		{
+			"id": 12,
+			"name": "Ruang Kolaborasi 4.3",
+			"floor": 4,
+			"temperature": 24.5,
+			"co2": 700,
+			"humidity": 64,
+			"status": "Normal"
+		}
+	],
+	"energyTrend": [
+		{ "hour": "00:00", "kwh": 20 },
+		{ "hour": "01:00", "kwh": 18 },
+		{ "hour": "02:00", "kwh": 22 },
+		{ "hour": "03:00", "kwh": 19 },
+		{ "hour": "04:00", "kwh": 21 },
+		{ "hour": "05:00", "kwh": 25 },
+		{ "hour": "06:00", "kwh": 35 },
+		{ "hour": "07:00", "kwh": 55 },
+		{ "hour": "08:00", "kwh": 85 },
+		{ "hour": "09:00", "kwh": 95 },
+		{ "hour": "10:00", "kwh": 100 },
+		{ "hour": "11:00", "kwh": 105 },
+		{ "hour": "12:00", "kwh": 98 },
+		{ "hour": "13:00", "kwh": 92 },
+		{ "hour": "14:00", "kwh": 97 },
+		{ "hour": "15:00", "kwh": 102 },
+		{ "hour": "16:00", "kwh": 95 },
+		{ "hour": "17:00", "kwh": 88 },
+		{ "hour": "18:00", "kwh": 65 },
+		{ "hour": "19:00", "kwh": 45 },
+		{ "hour": "20:00", "kwh": 35 },
+		{ "hour": "21:00", "kwh": 30 },
+		{ "hour": "22:00", "kwh": 25 },
+		{ "hour": "23:00", "kwh": 22 }
+	],
+	"temperatureTrend": [
+		{ "hour": "00:00", "temp": 22.5 },
+		{ "hour": "01:00", "temp": 22.3 },
+		{ "hour": "02:00", "temp": 22.1 },
+		{ "hour": "03:00", "temp": 22.0 },
+		{ "hour": "04:00", "temp": 22.2 },
+		{ "hour": "05:00", "temp": 22.5 },
+		{ "hour": "06:00", "temp": 23.0 },
+		{ "hour": "07:00", "temp": 23.5 },
+		{ "hour": "08:00", "temp": 24.0 },
+		{ "hour": "09:00", "temp": 24.5 },
+		{ "hour": "10:00", "temp": 25.0 },
+		{ "hour": "11:00", "temp": 25.5 },
+		{ "hour": "12:00", "temp": 26.0 },
+		{ "hour": "13:00", "temp": 26.2 },
+		{ "hour": "14:00", "temp": 26.5 },
+		{ "hour": "15:00", "temp": 26.3 },
+		{ "hour": "16:00", "temp": 26.0 },
+		{ "hour": "17:00", "temp": 25.5 },
+		{ "hour": "18:00", "temp": 25.0 },
+		{ "hour": "19:00", "temp": 24.5 },
+		{ "hour": "20:00", "temp": 24.0 },
+		{ "hour": "21:00", "temp": 23.5 },
+		{ "hour": "22:00", "temp": 23.0 },
+		{ "hour": "23:00", "temp": 22.8 }
+	]
+}
