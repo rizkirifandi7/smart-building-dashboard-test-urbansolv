@@ -5,33 +5,23 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LayoutDashboard, Settings2 } from "lucide-react";
-import { StatCard } from "./StatCard";
-
-interface FloorStats {
-	total: number;
-	normal: number;
-	warning: number;
-	alert: number;
-}
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Settings2 } from "lucide-react";
 
 interface FloorFilterSectionProps {
 	selectedFloor: string;
 	floors: number[];
-	stats: FloorStats;
 	onFloorChange: (floor: string) => void;
 	className?: string;
 }
 
 /**
- * Floor filter and statistics section
+ * Floor filter section
  * Pure presentational component
  */
 export function FloorFilterSection({
 	selectedFloor,
 	floors,
-	stats,
 	onFloorChange,
 	className,
 }: FloorFilterSectionProps) {
@@ -69,23 +59,6 @@ export function FloorFilterSection({
 					</Select>
 				</div>
 			</CardHeader>
-
-			<CardContent>
-				<div className="space-y-3">
-					<div className="flex items-center gap-2 mb-2">
-						<LayoutDashboard className="h-4 w-4 text-muted-foreground" />
-						<span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-							Ringkasan Status
-						</span>
-					</div>
-					<div className="grid grid-cols-2 gap-3">
-						<StatCard value={stats.total} label="Total" variant="default" />
-						<StatCard value={stats.normal} label="Normal" variant="success" />
-						<StatCard value={stats.warning} label="Warning" variant="warning" />
-						<StatCard value={stats.alert} label="Alert" variant="danger" />
-					</div>
-				</div>
-			</CardContent>
 		</Card>
 	);
 }

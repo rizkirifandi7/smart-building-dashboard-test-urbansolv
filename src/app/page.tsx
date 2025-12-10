@@ -42,29 +42,18 @@ export default function Home() {
 		<div className="min-h-screen bg-background">
 			<Header buildingName={buildingData.building} />
 
-			<main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+			<main className="max-w-7xl	 mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-					{/* Left Sidebar: Controls & Navigation - 25% width */}
-					<aside className="lg:col-span-3 space-y-8 order-2 lg:order-1">
-						<div className="sticky top-24 animate-in fade-in slide-in-from-left-8 duration-700">
+					{/* Left Sidebar: Controls & 3D View - 33% width */}
+					<aside className="lg:col-span-4 space-y-8 order-2 lg:order-1">
+						<div className="sticky top-24 space-y-8 animate-in fade-in slide-in-from-left-8 duration-700">
 							<FloorFilterSection
 								selectedFloor={selectedFloor}
 								floors={floors}
-								stats={floorStats}
 								onFloorChange={setSelectedFloor}
 							/>
-						</div>
-					</aside>
 
-					{/* Main Content Area - 75% width */}
-					<div className="lg:col-span-9 space-y-8 order-1 lg:order-2">
-						{/* Summary Cards */}
-						<section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-							<SummaryCards data={buildingData.summary} />
-						</section>
-
-						{/* 3D Building View Section */}
-						<section className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+							{/* 3D Building View Section */}
 							<BuildingViewCard
 								rooms={buildingData.rooms}
 								buildingName={buildingData.building}
@@ -73,6 +62,14 @@ export default function Home() {
 									setSelectedFloor(selectedFloor === floor ? "all" : floor);
 								}}
 							/>
+						</div>
+					</aside>
+
+					{/* Main Content Area - 67% width */}
+					<div className="lg:col-span-8 space-y-8 order-1 lg:order-2">
+						{/* Summary Cards */}
+						<section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+							<SummaryCards data={buildingData.summary} />
 						</section>
 
 						{/* Charts Section */}
@@ -85,7 +82,7 @@ export default function Home() {
 
 						{/* Detailed Table Section */}
 						<section className="animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-							<RoomsTable rooms={filteredRooms} />
+							<RoomsTable rooms={filteredRooms} stats={floorStats} />
 						</section>
 					</div>
 				</div>
