@@ -1,4 +1,11 @@
-import { OrbitControls, PerspectiveCamera, Text } from "@react-three/drei";
+import {
+	OrbitControls,
+	PerspectiveCamera,
+	Environment,
+	ContactShadows,
+	Grid,
+	Text,
+} from "@react-three/drei";
 import { Floor3D } from "./Floor3D";
 import { useFloorData } from "@/hooks/useBuildingData";
 import { Room } from "@/types/building";
@@ -6,13 +13,20 @@ import { Room } from "@/types/building";
 interface Building3DSceneProps {
 	rooms: Room[];
 	buildingName: string;
+	isDark?: boolean;
+	onFloorClick?: (floor: string) => void;
 }
 
 /**
  * 3D Building Scene
  * Contains camera, lights, and building model
  */
-export function Building3DScene({ rooms, buildingName }: Building3DSceneProps) {
+export function Building3DScene({
+	rooms,
+	buildingName,
+	isDark = true,
+	onFloorClick,
+}: Building3DSceneProps) {
 	const { floorData, floors } = useFloorData(rooms);
 
 	return (
@@ -24,18 +38,33 @@ export function Building3DScene({ rooms, buildingName }: Building3DSceneProps) {
 				enableRotate={true}
 				minDistance={5}
 				maxDistance={20}
+				autoRotate
+				autoRotateSpeed={0.5}
 			/>
 
-			{/* Lighting */}
+			{/* Lighting & Environment */}
 			<ambientLight intensity={0.5} />
-			<directionalLight position={[10, 10, 5]} intensity={1} />
-			<directionalLight position={[-10, -10, -5]} intensity={0.3} />
+			<directionalLight position={[10, 10, 5]} intensity={1} castShadow />
+			<Environment preset="city" />
 
-			{/* Ground */}
-			<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-				<planeGeometry args={[10, 10]} />
-				<meshStandardMaterial color="#94a3b8" />
-			</mesh>
+			{/* Ground & Shadows */}
+			<Grid
+				position={[0, -0.5, 0]}
+				args={[20, 20]}
+				cellColor={isDark ? "#334155" : "#cbd5e1"}
+				sectionColor={isDark ? "#475569" : "#94a3b8"}
+				fadeDistance={20}
+				fadeStrength={1}
+			/>
+			<ContactShadows
+				position={[0, -0.49, 0]}
+				opacity={0.4}
+				scale={20}
+				blur={2}
+				far={4.5}
+				resolution={256}
+				frames={1}
+			/>
 
 			{/* Building floors */}
 			{floors.map((floorNum, index) => (
@@ -45,6 +74,7 @@ export function Building3DScene({ rooms, buildingName }: Building3DSceneProps) {
 					floorNumber={floorNum}
 					roomCount={floorData[floorNum].count}
 					alertCount={floorData[floorNum].alerts}
+					onClick={() => onFloorClick?.(floorNum.toString())}
 				/>
 			))}
 
@@ -52,9 +82,11 @@ export function Building3DScene({ rooms, buildingName }: Building3DSceneProps) {
 			<Text
 				position={[0, floors.length * 1.5 + 0.5, 0]}
 				fontSize={0.4}
-				color="#1e293b"
+				color={isDark ? "white" : "black"}
 				anchorX="center"
 				anchorY="middle"
+				outlineWidth={0.02}
+				outlineColor={isDark ? "#000000" : "#ffffff"}
 			>
 				{buildingName}
 			</Text>

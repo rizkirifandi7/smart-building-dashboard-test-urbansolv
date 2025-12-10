@@ -8,11 +8,11 @@ type StatusType = "Normal" | "Warning" | "Alert";
 export const getStatusColor = (status: StatusType): string => {
 	const colorMap: Record<StatusType, string> = {
 		Normal:
-			"bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 border-green-200 dark:border-green-800",
+			"bg-cyan-100 text-cyan-700 border-cyan-200 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/20",
 		Warning:
-			"bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400 border-yellow-200 dark:border-yellow-800",
+			"bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20",
 		Alert:
-			"bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 border-red-200 dark:border-red-800",
+			"bg-rose-100 text-rose-700 border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/20",
 	};
 
 	return colorMap[status];
@@ -22,7 +22,7 @@ export const getStatusColor = (status: StatusType): string => {
  * Get floor color for 3D visualization
  */
 export const getFloorColor = (hasAlert: boolean): string => {
-	return hasAlert ? "#ef4444" : "#3b82f6";
+	return hasAlert ? "#f43f5e" : "#06b6d4";
 };
 
 /**

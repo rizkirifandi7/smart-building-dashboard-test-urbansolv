@@ -9,6 +9,8 @@ import buildingDataJson from "@/data/building-data.json";
 import { BuildingData } from "@/types/building";
 import { Building3DScene } from "@/components/3d/Building3DScene";
 import { BuildingInfoPanel } from "@/components/BuildingInfoPanel";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const buildingData = buildingDataJson as BuildingData;
 
@@ -18,9 +20,17 @@ const buildingData = buildingDataJson as BuildingData;
  */
 export default function BuildingViewPage() {
 	const totalFloors = new Set(buildingData.rooms.map((r) => r.floor)).size;
+	const { resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	const isDark = mounted ? resolvedTheme === "dark" : true;
 
 	return (
-		<div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-6">
+		<div className="min-h-screen bg-background p-6">
 			<div className="container mx-auto space-y-6">
 				<div className="flex items-center gap-4">
 					<Link href="/">
@@ -43,11 +53,12 @@ export default function BuildingViewPage() {
 								<CardTitle>Model Gedung 3D</CardTitle>
 							</CardHeader>
 							<CardContent className="p-0">
-								<div className="h-[600px] w-full bg-linear-to-b from-blue-50 to-slate-100 dark:from-slate-900 dark:to-slate-950">
+								<div className="h-[600px] w-full bg-muted/30">
 									<Canvas>
 										<Building3DScene
 											rooms={buildingData.rooms}
 											buildingName={buildingData.building}
+											isDark={isDark}
 										/>
 									</Canvas>
 								</div>

@@ -6,9 +6,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Building2 } from "lucide-react";
-import Link from "next/link";
+import { LayoutDashboard, Settings2 } from "lucide-react";
 import { StatCard } from "./StatCard";
 
 interface FloorStats {
@@ -23,6 +21,7 @@ interface FloorFilterSectionProps {
 	floors: number[];
 	stats: FloorStats;
 	onFloorChange: (floor: string) => void;
+	className?: string;
 }
 
 /**
@@ -34,50 +33,57 @@ export function FloorFilterSection({
 	floors,
 	stats,
 	onFloorChange,
+	className,
 }: FloorFilterSectionProps) {
 	return (
-		<Card>
-			<CardHeader>
-				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-					<div>
-						<CardTitle>Filter Ruangan</CardTitle>
-						<p className="text-sm text-muted-foreground mt-1">
-							Pilih lantai untuk melihat detail ruangan
-						</p>
-					</div>
-					<div className="flex items-center gap-4">
-						<Select value={selectedFloor} onValueChange={onFloorChange}>
-							<SelectTrigger className="w-[180px]">
-								<SelectValue placeholder="Pilih Lantai" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="all">Semua Lantai</SelectItem>
-								{floors.map((floor) => (
-									<SelectItem key={floor} value={floor.toString()}>
-										Lantai {floor}
-									</SelectItem>
-								))}
-							</SelectContent>
-						</Select>
-						<Link href="/building-view">
-							<Button variant="outline" className="gap-2">
-								<Building2 className="h-4 w-4" />
-								3D View
-							</Button>
-						</Link>
+		<Card className={`border-l-4 border-l-cyan-500 shadow-lg ${className}`}>
+			<CardHeader className="pb-4">
+				<div className="flex items-center justify-between mb-4">
+					<div className="flex items-center gap-2">
+						<div className="p-2 bg-cyan-500/10 rounded-lg">
+							<Settings2 className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />
+						</div>
+						<div>
+							<CardTitle className="text-base">Control Panel</CardTitle>
+							<p className="text-xs text-muted-foreground">Manajemen Lantai</p>
+						</div>
 					</div>
 				</div>
+
+				<div className="space-y-2">
+					<label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+						Pilih Lantai
+					</label>
+					<Select value={selectedFloor} onValueChange={onFloorChange}>
+						<SelectTrigger className="w-full bg-background/50 backdrop-blur-sm">
+							<SelectValue placeholder="Pilih Lantai" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="all">Semua Lantai</SelectItem>
+							{floors.map((floor) => (
+								<SelectItem key={floor} value={floor.toString()}>
+									Lantai {floor}
+								</SelectItem>
+							))}
+						</SelectContent>
+					</Select>
+				</div>
 			</CardHeader>
+
 			<CardContent>
-				<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-					<StatCard
-						value={stats.total}
-						label="Total Ruangan"
-						variant="default"
-					/>
-					<StatCard value={stats.normal} label="Normal" variant="success" />
-					<StatCard value={stats.warning} label="Warning" variant="warning" />
-					<StatCard value={stats.alert} label="Alert" variant="danger" />
+				<div className="space-y-3">
+					<div className="flex items-center gap-2 mb-2">
+						<LayoutDashboard className="h-4 w-4 text-muted-foreground" />
+						<span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+							Ringkasan Status
+						</span>
+					</div>
+					<div className="grid grid-cols-2 gap-3">
+						<StatCard value={stats.total} label="Total" variant="default" />
+						<StatCard value={stats.normal} label="Normal" variant="success" />
+						<StatCard value={stats.warning} label="Warning" variant="warning" />
+						<StatCard value={stats.alert} label="Alert" variant="danger" />
+					</div>
 				</div>
 			</CardContent>
 		</Card>

@@ -39,11 +39,11 @@ export function BuildingInfoPanel({
 				</CardHeader>
 				<CardContent className="space-y-3">
 					<div className="flex items-center gap-3">
-						<div className="h-4 w-4 rounded bg-blue-500" />
+						<div className="h-4 w-4 rounded bg-cyan-500" />
 						<span className="text-sm">Lantai Normal</span>
 					</div>
 					<div className="flex items-center gap-3">
-						<div className="h-4 w-4 rounded bg-red-500" />
+						<div className="h-4 w-4 rounded bg-rose-500" />
 						<span className="text-sm">Lantai dengan Alert</span>
 					</div>
 				</CardContent>
